@@ -1,0 +1,144 @@
+Supplemental Material to:
+
+A Cascadia Slab Model from Receiver Functions
+
+by
+
+Wasja Bloch, Michael Bostock, Pascal Audet
+
+This folder contains various data files that describe the slab model:
+
+- control-points.txt
+    The control points of the slab model in tabulator-delimited format.
+
+- control-points.csv
+    The control points of the slab model in comma-delimited format.
+
+    Columns are:
+     0 station:   Station name (Network.Station, Network CL = "co-located")
+     1 longitude: Longitude of the station (degree east)
+     2 latitude:  Latitude of the station (degree north)
+     3 elevation: Elevation of the station (km)
+     4 depth_t:   Depth of the t horizon at below the station (km)  
+     5 uncert_t:  Nominal depth uncertainty of the t horizon (km)
+     6 qual_t:    Quality of the t horizon observation
+     7 depth_c:   Depth of the c horizon at below the station (km)  
+     8 uncert_c:  Nominal depth uncertainty of the c horizon (km)
+     9 qual_c:    Quality of the c horizon observation
+    10 depth_m:   Depth of the c horizon at below the station (km)  
+    11 uncert_m:  Nominal depth uncertainty of the c horizon (km)
+    12 qual_m:    Quality of the c horizon observation
+    14 thick0:    Thickness of the continental crust (km)
+    15 thick1:    Thickness of Layer 1 (km)
+    16 thick2:    Thickness of Layer 2 (km)
+    17 vs0:       S-wave velocity of the continental crust (km/s)
+    18 vs1:       S-wave velocity of Layer 1 (km/s)
+    19 vs2:       S-wave velocity of Layer 2 (km/s)
+    20 vpvs0:     P- to S-wave velocity ratio of the continental crust (-) 
+    21 vpvs1:     P- to S-wave velocity ratio of Layer 1 (-)     
+    22 vpvs2:     P- to S-wave velocity ratio of Layer 2 (-) 
+    23 strike:    Strike of the slab stratigraphy (degree east of north)
+    24 dip:       Dip of the slab stratigraphy (degree down from horizontal)
+
+- model_limits.txt
+    Polygon defining the model edges
+
+    Columns are:
+    0: Longitudes (degree east)
+    1: Latitudes (degree north)
+
+* grids_unmasked/
+    2-dimensional grids of subduction stratigraphy properties in NetCDF format.
+
+    - c_curvature.nc
+        curvature of the c horizon (1e-6/m)
+    - c_depth.nc
+        depth of the c horizon (km)
+    - c_dip.nc
+        dip of the c horizon (degree)
+    - c_mask.nc
+        .3 degree radius around c horizon quality A stations are 1, 0 otherwise
+    - c_strike.nc
+        strike of the c horizon (degree)
+
+    - layer1_thickness.nc
+        thickness of Layer 1 (km)
+    - layer2_thickness.nc
+        thickness of Layer 2 (km)
+    - layers1+2_thickness.nc
+        thickness of Layer 1 plus thickness of Layer 2 (km)
+
+    - m_curvature.nc
+        curvature of the m horizon (1e-6/m)
+    - m_depth.nc
+        depth of the m horizon (km)
+    - m_dip.nc
+        dip of the m horizon (degree)
+    - m_mask.nc
+        .3 degree radius around m horizon quality A stations are 1, 0 otherwise
+    - m_strike.nc
+        strike of the m horizon (degree)
+
+    - t_curvature.nc
+        curvature of the t horizon (1e-6/m)
+    - t_depth.nc
+        depth of the t horizon (km)
+    - t_dip.nc
+        dip of the t horizon (degree)
+    - t_mask.nc
+        .3 degree radius around t horizon quality A stations are 1, 0 otherwise
+    - t_strike.nc
+        strike of the t horizon (degree)
+
+* grids_masked/
+    2-dimensional grids of subduction stratigraphy properties in NetCDF format, masked
+    inside a .3 degree radius around quality A stations.
+
+    - c_curvature_masked.nc
+        curvature of the c horizon (1e-6/m)
+    - c_depth_masked.nc
+        depth of the c horizon (km)
+    - c_dip_masked.nc
+        dip of the c horizon (degree)
+    - c_strike_masked.nc
+        strike of the c horizon (degree)
+
+    - layer1_thickness_masked.nc
+        thickness of Layer 1 (km)
+    - layer2_thickness_masked.nc
+        thickness of Layer 2 (km)
+    - layers1+2_thickness_masked.nc
+        thickness of Layer 1 plus thickness of Layer 2 (km)
+
+    - m_curvature_masked.nc
+        curvature of the m horizon (1e-6/m)
+    - m_depth_masked.nc
+        depth of the m horizon (km)
+    - m_dip_masked.nc
+        dip of the m horizon (degree)
+    - m_strike_masked.nc
+        strike of the m horizon (degree)
+
+    - t_curvature_masked.nc
+        curvature of the t horizon (1e-6/m)
+    - t_depth_masked.nc
+        depth of the t horizon (km)
+    - t_dip_masked.nc
+        dip of the t horizon (degree)
+    - t_strike_masked.nc
+        strike of the t horizon (degree)
+
+* pyraysum_models/
+    Model files that yield the best fitting synthetic receiver functions. For use with
+    pyraysum [1, 2, 3]. File names correspond to station names in
+    control-points.txt
+
+References:
+[1] Audet, P., and Bloch, W. (2022). PyRaysum: Software for modeling ray-theoretical
+body-wave propagation. Zenodo. https://doi.org/10.5281/zenodo.7468301
+
+[2] Bloch, W., and Audet, P. (2023). PyRaysum: Software for modeling ray-theoretical
+plane body-wave propagation in dipping anisotropic media. Seismica.
+https://doi.org/10.26443/seismica.v2i1.220
+
+[3] https://github.com/paudetseis/PyRaysum
