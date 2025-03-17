@@ -51,15 +51,19 @@ load([pwd, '/inputs/matlab_structures/geometry/OR2012_srGeometry.mat'])
 
 % load interfaces
 % CASIE21 basement
-the_CSslab = [pwd, '/inputs/slab_literature/Carbotte2024_CASIE21/Cascadia_CASIE21/Casie21-R2T-TOC_medflt-surface-mask.grd'];
+the_CSslab  = [pwd, '/inputs/slab_literature/Carbotte2024_CASIE21/Cascadia_CASIE21/Casie21-R2T-TOC_medflt-surface-mask.grd'];
 % bloch moho
-the_Bloch  = [pwd, '/inputs/slab_literature/Bloch2023_rf/control-points.txt'];
+the_Bloch   = [pwd, '/inputs/slab_literature/Bloch2023_rf/control-points.txt'];
 % McCrory slab
-the_McCr   = [pwd, '/inputs/slab_literature/McCrory2012_JdF/MCslab_cut_allSlab.txt'];
+the_McCr    = [pwd, '/inputs/slab_literature/McCrory2012_JdF/MCslab_cut_allSlab.txt'];
 % Slab2.0
-the_slab2  = [pwd, '/inputs/slab_literature/Hayes2018_slab2/cas_slab2_dep_02.24.18.csv'];
+the_slab2   = [pwd, '/inputs/slab_literature/Hayes2018_slab2/cas_slab2_dep_02.24.18.csv'];
 % gorda ridge elevation
 the_GR      = [pwd, '/inputs/gorda_ridge_elevation/GMRTv4_3_0_20250225topo_GR.asc'];
+
+% output directories for merged slabs and their plots
+outPlot_dir = [pwd, '/outputs/plots/'];
+outMdl_dir  = [pwd, '/outputs/models/'];
 
 % Return to the original script directory after loading necessary data files
 cd(scriptDir)
@@ -392,12 +396,55 @@ F                        = scatteredInterpolant(ln_M, lt_M, slab_gp_sl); % linea
 slabG_gp_sl              = F(lnAr_g, ltAr_g);
 slabG_gp_sl_filt         = imgaussfilt(slabG_gp_sl, 2); % slight gaussian filtering to remove very high frequency structures
 
+% save all the merged slabs
+save([outMdl_dir, 'casiePF_bloch.mat'],   'slabG_pf_bl_filt');
+save([outMdl_dir, 'casieGP_bloch.mat'],   'slabG_gp_bl_filt');
+save([outMdl_dir, 'casiePF_McCrory.mat'], 'slabG_pf_mc_filt');
+save([outMdl_dir, 'casieGP_McCrory.mat'], 'slabG_gp_mc_filt');
+save([outMdl_dir, 'casiePF_slab2.mat'],   'slabG_pf_sl_filt');
+save([outMdl_dir, 'casieGP_slab2.mat'],   'slabG_gp_sl_filt');
 
+% make plots and save
+figure(1), clf
+contourf(lnAr_g, ltAr_g, slabG_pf_bl_filt, [min(slabG_pf_bl_filt(:)):2:max(slabG_pf_bl_filt(:))], 'LineStyle', '-')
+colorbar
+axis equal
+set(gca, 'FontSize', 16)
+saveas(gcf, [outPlot_dir, 'casiePF_bloch.jpg'])
 
+figure(1), clf
+contourf(lnAr_g, ltAr_g, slabG_gp_bl_filt, [min(slabG_gp_bl_filt(:)):2:max(slabG_gp_bl_filt(:))], 'LineStyle', '-')
+colorbar
+axis equal
+set(gca, 'FontSize', 16)
+saveas(gcf, [outPlot_dir, 'casieGP_bloch.jpg'])
 
+figure(1), clf
+contourf(lnAr_g, ltAr_g, slabG_pf_mc_filt, [min(slabG_pf_mc_filt(:)):2:max(slabG_pf_mc_filt(:))], 'LineStyle', '-')
+colorbar
+axis equal
+set(gca, 'FontSize', 16)
+saveas(gcf, [outPlot_dir, 'casiePF_McCrory.jpg'])
 
+figure(1), clf
+contourf(lnAr_g, ltAr_g, slabG_gp_mc_filt, [min(slabG_gp_mc_filt(:)):2:max(slabG_gp_mc_filt(:))], 'LineStyle', '-')
+colorbar
+axis equal
+set(gca, 'FontSize', 16)
+saveas(gcf, [outPlot_dir, 'casieGP_McCrory.jpg'])
 
+figure(1), clf
+contourf(lnAr_g, ltAr_g, slabG_pf_sl_filt, [min(slabG_pf_sl_filt(:)):2:max(slabG_pf_sl_filt(:))], 'LineStyle', '-')
+colorbar
+axis equal
+set(gca, 'FontSize', 16)
+saveas(gcf, [outPlot_dir, 'casiePF_slab2.jpg'])
 
+figure(1), clf
+contourf(lnAr_g, ltAr_g, slabG_gp_sl_filt, [min(slabG_gp_sl_filt(:)):2:max(slabG_gp_sl_filt(:))], 'LineStyle', '-')
+colorbar
+axis equal
+set(gca, 'FontSize', 16)
+saveas(gcf, [outPlot_dir, 'casieGP_slab2.jpg'])
 
-
-
+disp('Models and plots are saved!')
