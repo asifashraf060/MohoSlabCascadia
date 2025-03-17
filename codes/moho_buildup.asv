@@ -343,15 +343,11 @@ ltAr = [min(ltlm):.02:max(ltlm)];
 gpr_data         = (griddata(lonG, latG, ZpredCS_interp, lnAr_g, ltAr_g))';
 % CASIE21--PF
 pf_data          = (griddata(lonG, latG, Zpf_interp, lnAr_g, ltAr_g))';
-% Extened Moho in northern California
+% Extened Moho in 
 mh_ext_data      = (griddata(lon_ext_g, lat_ext_g, z_pf_ext_gr, lnAr_g, ltAr_g))';
-% Moho aroound Gorda ridge
 gr_data          = (griddata(X_gr_crs, Y_gr_crs, data_crs_filt, lnAr_g, ltAr_g))';
-% Bloch onshore Moho
 blch_data        = (griddata(ln_bl_g, lt_bl_g, blch, lnAr_g, ltAr_g))';
-% McCrory onshore Moho
 mc_data          = (griddata(ln_mc_g, lt_mc_g, Znormal_mc_interp, lnAr_g, ltAr_g))';
-% Slab2.0 onshore Moho
 sl_data          = (griddata(ln_sl_g, lt_sl_g, Znormal_sl_interp, lnAr_g, ltAr_g))';
 
 % building moho combining ...
@@ -382,15 +378,9 @@ slabG_gp_mc_filt         = imgaussfilt(slabG_gp_mc, 2); % slight gaussian filter
 
 % CASIE21_pf && slab2.0
 [ln_M, lt_M, slab_pf_sl] = mergeSlabData(lnAr, ltAr, pf_data, mh_ext_data, gr_data, sl_data);
-F                        = scatteredInterpolant(ln_M, lt_M, slab_pf_sl); % linear interpolation across all the points
-slabG_pf_sl              = F(lnAr_g, ltAr_g);
-slabG_pf_sl_filt         = imgaussfilt(slabG_pf_sl, 2); % slight gaussian filtering to remove very high frequency structures
-
-% CASIE21_gpr && slab2.0
-[ln_M, lt_M, slab_gp_sl] = mergeSlabData(lnAr, ltAr, gpr_data, mh_ext_data, gr_data, sl_data);
-F                        = scatteredInterpolant(ln_M, lt_M, slab_gp_sl); % linear interpolation across all the points
-slabG_gp_sl              = F(lnAr_g, ltAr_g);
-slabG_gp_sl_filt         = imgaussfilt(slabG_gp_sl, 2); % slight gaussian filtering to remove very high frequency structures
+F                        = scatteredInterpolant(ln_M, lt_M, slab_pf_mc); % linear interpolation across all the points
+slabG_pf_mc              = F(lnAr_g, ltAr_g);
+slabG_pf_mc_filt         = imgaussfilt(slabG_pf_mc, 2); % slight gaussian filtering to remove very high frequency structures
 
 
 
