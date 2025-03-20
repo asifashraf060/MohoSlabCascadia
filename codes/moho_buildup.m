@@ -396,6 +396,8 @@ F                        = scatteredInterpolant(ln_M, lt_M, slab_gp_sl); % linea
 slabG_gp_sl              = F(lnAr_g, ltAr_g);
 slabG_gp_sl_filt         = imgaussfilt(slabG_gp_sl, 2); % slight gaussian filtering to remove very high frequency structures
 
+disp('writing the slab models ...')
+
 % save all the merged slabs
 save([outMdl_dir, 'casiePF_bloch.mat'],   'slabG_pf_bl_filt');
 save([outMdl_dir, 'casieGP_bloch.mat'],   'slabG_gp_bl_filt');
@@ -403,6 +405,10 @@ save([outMdl_dir, 'casiePF_McCrory.mat'], 'slabG_pf_mc_filt');
 save([outMdl_dir, 'casieGP_McCrory.mat'], 'slabG_gp_mc_filt');
 save([outMdl_dir, 'casiePF_slab2.mat'],   'slabG_pf_sl_filt');
 save([outMdl_dir, 'casieGP_slab2.mat'],   'slabG_gp_sl_filt');
+
+% save the lat and lon grids for the models
+save([outMdl_dir, 'LON_grid.mat'],   'lnAr_g');
+save([outMdl_dir, 'LAT_grid.mat'],   'ltAr_g');
 
 % make plots and save
 figure(1), clf
