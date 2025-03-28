@@ -1,0 +1,58 @@
+<PAMDataset>
+  <Metadata domain="IMAGE_STRUCTURE">
+    <MDI key="INTERLEAVE">PIXEL</MDI>
+  </Metadata>
+  <Metadata domain="Esri">
+    <MDI key="PyramidResamplingType">NEAREST</MDI>
+  </Metadata>
+  <Metadata domain="xml:ESRI" format="xml">
+    <GeodataXform xsi:type="typens:PolynomialXform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:typens="http://www.esri.com/schemas/ArcGIS/10.4">
+      <PolynomialOrder>1</PolynomialOrder>
+      <SpatialReference xsi:type="typens:GeographicCoordinateSystem">
+        <WKT>GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433],AUTHORITY["EPSG",4326]]</WKT>
+        <XOrigin>-400</XOrigin>
+        <YOrigin>-400</YOrigin>
+        <XYScale>11258999068426.24</XYScale>
+        <ZOrigin>-100000</ZOrigin>
+        <ZScale>10000</ZScale>
+        <MOrigin>-100000</MOrigin>
+        <MScale>10000</MScale>
+        <XYTolerance>8.983152841195215e-009</XYTolerance>
+        <ZTolerance>0.001</ZTolerance>
+        <MTolerance>0.001</MTolerance>
+        <HighPrecision>true</HighPrecision>
+        <LeftLongitude>-180</LeftLongitude>
+        <WKID>4326</WKID>
+        <LatestWKID>4326</LatestWKID>
+      </SpatialReference>
+      <SourceGCPs xsi:type="typens:ArrayOfDouble">
+        <Double>493.18103233830823</Double>
+        <Double>-479.3232587064677</Double>
+        <Double>1665.9297263681588</Double>
+        <Double>-878.29179104477612</Double>
+        <Double>493.16532979595513</Double>
+        <Double>-879.11797312736599</Double>
+        <Double>1665.425344411173</Double>
+        <Double>-478.41969022201738</Double>
+        <Double>189.77942838598074</Double>
+        <Double>-118.30279390415672</Double>
+        <Double>1654.4406764078453</Double>
+        <Double>-1006.280272090884</Double>
+      </SourceGCPs>
+      <TargetGCPs xsi:type="typens:ArrayOfDouble">
+        <Double>-130</Double>
+        <Double>44</Double>
+        <Double>-126</Double>
+        <Double>43</Double>
+        <Double>-130</Double>
+        <Double>43</Double>
+        <Double>-126</Double>
+        <Double>44</Double>
+        <Double>-131.047</Double>
+        <Double>44.899999999999999</Double>
+        <Double>-126</Double>
+        <Double>42.681021000000001</Double>
+      </TargetGCPs>
+    </GeodataXform>
+  </Metadata>
+</PAMDataset>

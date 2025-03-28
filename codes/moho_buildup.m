@@ -35,7 +35,7 @@ close all, clc, clear
 
 % Set the longitude (lnlm) and latitude (ltlm) boundaries for the final merged model.
 % These limits define the geographic area of interest (e.g., Cascadia region)
-lnlm = [-130.5 -122.25]; ltlm = [40.5 50];
+lnlm = [-128.5 -122.25]; ltlm = [40.5 50];
 
 % Determine the directory where this script is located.
 % Change to the script directory and then move one level up,
